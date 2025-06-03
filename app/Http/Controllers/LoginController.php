@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -18,6 +19,9 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
+        ], [
+            'email.required' => 'Form email harus diisi',
+            'password.required' => 'Form password harus diisi',
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -30,6 +34,7 @@ class LoginController extends Controller
         }
         return back()->with('error', 'Login Gagal');
     }
+
     public function logoutBackend()
     {
         Auth::logout();

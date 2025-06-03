@@ -16,23 +16,23 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $table = "user";
     protected $fillable = [
-    'nama',
-    'email',
-    'role',
-    'status',
-    'password',
-    'hp',
-    'foto',
-];
+        'nama',
+        'email',
+        'role',
+        'status',
+        'password',
+        'hp',
+        'foto',
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -44,8 +44,11 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
         ];
     }
+}
